@@ -69,3 +69,5 @@ Week 7+    dApp Store submission (see DAPP_STORE.md)
 ---
 
 *Built to be forked. Ship something great.*
+
+**Creator:** [@CHxmrBrother on X](https://x.com/CHxmrBrother)

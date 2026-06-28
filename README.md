@@ -11,6 +11,7 @@ Connect with Seed Vault, match on-chain verified singles, chat end-to-end encryp
 [![Solana Mobile](https://img.shields.io/badge/Solana%20Mobile-FF3D8A?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzAwMCIgZD0iTTQuNCAxNi44IDEyIDE5LjUgMTkuNiAxNi44IDIxIDEyIDEyIDQuNSAzIDEyIDQuNCAxNi44eiIvPjwvc3ZnPg==)](https://solanamobile.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-FF3D8A?style=flat-square)](./LICENSE)
 [![UI Demo](https://img.shields.io/badge/UI%20Demo-interactive-FF3D8A?style=flat-square)](./docs/mockup/preview.html)
+[![Built by @CHxmrBrother](https://img.shields.io/badge/Built%20by-@CHxmrBrother-FF3D8A?style=flat-square&logo=x)](https://x.com/CHxmrBrother)
 
 </div>
 
@@ -101,6 +102,10 @@ grap3/
 ├── AGENTS.md         # AI assistant conventions
 └── .github/          # CI + issue/PR templates
 ```
+
+## Creator
+
+Built and open-sourced by [**@CHxmrBrother**](https://x.com/CHxmrBrother) — follow on X for updates, launches, and builder drops.
 
 ## License
 
