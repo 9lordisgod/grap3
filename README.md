@@ -56,6 +56,20 @@ cd app && npm install --legacy-peer-deps && npm run android
 
 → Full guide: [docs/SETUP.md](./docs/SETUP.md)
 
+## For builders & contributors
+
+Fork this repo and launch your own dating app. We ship prompts, guides, and templates to help you ship fast.
+
+| Resource | What you get |
+|----------|--------------|
+| [**Builder Kit**](./docs/BUILDER_KIT.md) | Central hub — repo map, build order, design rules |
+| [**AI Prompts**](./docs/prompts/README.md) | 12 copy-paste prompts for Cursor, Claude, ChatGPT |
+| [**Fork & Launch**](./docs/FORK_AND_LAUNCH.md) | Rebrand, deploy, dApp Store submission |
+| [**Good First Issues**](./docs/GOOD_FIRST_ISSUES.md) | Starter tasks ranked easy → hard |
+| [**AGENTS.md**](./AGENTS.md) | Auto-loaded guide for AI coding assistants |
+
+**Fastest path:** paste [Project Context](./docs/prompts/00-project-context.md) + [Wire Live API](./docs/prompts/01-wire-live-api.md) into your AI editor.
+
 ## Documentation
 
 | Topic | Link |
@@ -70,16 +84,22 @@ cd app && npm install --legacy-peer-deps && npm run android
 | Security | [docs/SECURITY.md](./docs/SECURITY.md) |
 | dApp Store publish | [docs/DAPP_STORE.md](./docs/DAPP_STORE.md) · [docs/RELEASE.md](./docs/RELEASE.md) |
 | Setup checklist | [docs/REQUIREMENTS_CHECKLIST.md](./docs/REQUIREMENTS_CHECKLIST.md) |
+| Builder kit | [docs/BUILDER_KIT.md](./docs/BUILDER_KIT.md) · [AI prompts](./docs/prompts/README.md) |
+| Fork & launch | [docs/FORK_AND_LAUNCH.md](./docs/FORK_AND_LAUNCH.md) |
 | Contributing | [docs/CONTRIBUTING.md](./docs/CONTRIBUTING.md) · [docs/CONTRIBUTORS.md](./docs/CONTRIBUTORS.md) |
 
 ## Project structure
 
 ```
 grap3/
-├── app/          # React Native dApp (Seeker)
-├── backend/      # API + Prisma
-├── docs/         # Specs, UI samples, publishing guides
-└── .github/      # CI
+├── app/              # React Native dApp (Seeker)
+├── backend/          # API + Prisma
+├── docs/
+│   ├── prompts/      # 12 AI prompts for builders
+│   ├── BUILDER_KIT.md
+│   └── FORK_AND_LAUNCH.md
+├── AGENTS.md         # AI assistant conventions
+└── .github/          # CI + issue/PR templates
 ```
 
 ## License
