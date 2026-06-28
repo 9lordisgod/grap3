@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "Grap3",
+    "slug": "grap3",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "icon": "./assets/icon.png",
+    "scheme": "grap3",
+    "android": {
+      "package": "dating.grap3.app",
+      "permissions": ["INTERNET"]
+    },
+    "plugins": ["expo-linear-gradient"]
+  }
+}

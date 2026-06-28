@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Grap3 — UI/UX Demo</title>
+<link rel="icon" type="image/png" href="../assets/brand/logo.png" />
+<link rel="stylesheet" href="../assets/brand/grap3-tokens.css" />
+<link rel="stylesheet" href="../assets/brand/logo-box.css" />
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh}
+
+  /* ── landing ── */
+  .hero{text-align:center;padding:52px 24px 32px;border-bottom:1px solid var(--border)}
+  .logo-box--md{width:72px;height:72px;border-radius:16px}
+  .hero h1{font-size:32px;font-weight:700;letter-spacing:-0.8px}
+  .hero .sub{color:var(--txt2);font-size:15px;margin-top:8px;max-width:480px;margin-inline:auto;line-height:1.55}
+  .badges{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:18px}
+  .badge{font-size:11px;font-weight:600;padding:5px 12px;border-radius:999px;border:1px solid var(--border);color:var(--accent)}
+
+  .feat-row{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;padding:28px 24px;border-bottom:1px solid var(--border)}
+  .feat{text-align:center;max-width:140px}
+  .feat-ic{font-size:18px;margin-bottom:6px;color:var(--accent)}
+  .feat-t{font-size:12px;font-weight:600}
+  .feat-d{font-size:11px;color:var(--txt3);margin-top:3px;line-height:1.35}
+
+  .nav{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:20px 16px}
+  .nav button{background:var(--surface);border:1px solid var(--border);color:var(--txt2);padding:8px 16px;border-radius:999px;font-size:12px;font-weight:600;cursor:pointer;transition:.15s}
+  .nav button.on{background:var(--accent-bg);border-color:rgba(255,61,138,0.4);color:var(--accent)}
+
+  /* ── gallery ── */
+  .gallery{display:flex;gap:44px;padding:8px 32px 56px;overflow-x:auto;scroll-snap-type:x mandatory}
+  .gallery::-webkit-scrollbar{height:4px}
+  .gallery::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
+  .frame{flex-shrink:0;scroll-snap-align:center}
+  .frame-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;padding:0 4px}
+  .step{font-size:11px;font-weight:700;letter-spacing:1.2px;color:var(--accent);text-transform:uppercase}
+  .feat-tag{font-size:10px;color:var(--txt3);max-width:200px;text-align:right;line-height:1.3}
+
+  /* ── phone ── */
+  .phone{width:var(--pw);height:var(--ph);background:var(--bg);border-radius:46px;border:9px solid #1c1c1c;overflow:hidden;position:relative;box-shadow:0 40px 80px rgba(0,0,0,0.7),0 0 0 1px var(--border)}
+  .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:128px;height:27px;background:#1c1c1c;border-radius:0 0 18px 18px;z-index:10}
+  .status{position:absolute;top:12px;left:22px;right:22px;z-index:9;display:flex;justify-content:space-between;font-size:11px;font-weight:600;color:var(--txt3)}
+  .screen{height:100%;padding:50px 18px 54px;display:flex;flex-direction:column;position:relative}
+
+  .h{font-size:24px;font-weight:700;letter-spacing:-0.5px}
+  .sub{font-size:13px;color:var(--txt2);margin-top:5px;line-height:1.45}
+  .lbl{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--txt3)}
+
+  .btn{background:var(--accent);color:#000;font-weight:700;font-size:14px;padding:15px;border-radius:14px;text-align:center;border:none;width:100%;cursor:pointer}
+  .btn-s{background:transparent;border:1px solid var(--border2);color:var(--txt);margin-top:10px;padding:14px;border-radius:14px;font-size:14px;font-weight:600;width:100%;cursor:pointer}
+
+  .pill{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;padding:4px 9px;border-radius:999px;background:var(--accent-bg);color:var(--accent);border:1px solid rgba(255,61,138,0.25)}
+  .pill-d{width:5px;height:5px;border-radius:50%;background:var(--accent)}
+
+  .tabbar{position:absolute;bottom:0;left:0;right:0;height:54px;display:flex;border-top:1px solid var(--border);background:var(--bg)}
+  .tab{flex:1;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--txt3);position:relative;letter-spacing:0.2px}
+  .tab.on{color:var(--accent);font-weight:700}
+  .unread-dot{position:absolute;top:11px;right:calc(50% - 28px);width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+  /* onboard */
+  .logo-row{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:6px}
+  .logo-row .logo-box{margin-bottom:10px}
+  .foot{padding-bottom:8px}
+  .legal{font-size:11px;color:var(--txt3);text-align:center;margin-top:12px}
+  .code-tag{font-family:'SF Mono',Menlo,monospace;font-size:10px;color:var(--txt3);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-top:16px;line-height:1.6;text-align:left}
+
+  /* discover */
+  .disc-hd{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:14px}
+  .remain{text-align:right}
+  .remain-n{font-size:22px;font-weight:700;color:var(--accent);line-height:1}
+  .card{flex:1;border-radius:20px;overflow:hidden;position:relative;border:1px solid var(--border2);background-size:cover;background-position:center top}
+  .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0.15) 45%,rgba(0,0,0,0.88) 100%)}
+  .trust{position:absolute;top:14px;right:14px;display:flex;align-items:center;gap:5px;background:rgba(0,0,0,0.55);backdrop-filter:blur(8px);border:1px solid var(--border2);color:var(--accent);font-size:11px;font-weight:700;padding:6px 10px;border-radius:999px}
+  .pinfo{position:absolute;bottom:16px;left:16px;right:16px}
+  .pname{font-size:24px;font-weight:700;letter-spacing:-0.4px}
+  .page{color:var(--txt2);font-weight:400}
+  .pbio{font-size:13px;color:var(--txt2);margin-top:5px;line-height:1.4}
+  .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+  .tag{font-size:10px;font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid var(--border);color:var(--txt2)}
+  .compat{display:flex;align-items:center;gap:6px;margin-top:10px;font-size:12px;font-weight:700;color:var(--accent)}
+  .acts{display:flex;justify-content:center;align-items:center;gap:22px;padding:14px 0 6px}
+  .act{width:54px;height:54px;border-radius:50%;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:20px;background:var(--surface2)}
+  .act-like{border-color:rgba(255,61,138,0.45);color:var(--accent)}
+
+  /* match */
+  .match-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 12px 12px}
+  .match-h{font-size:30px;font-weight:800;letter-spacing:-0.8px}
+  .avs{display:flex;align-items:center;justify-content:center;margin:28px 0 20px;gap:0}
+  .av-wrap{width:92px;height:92px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid var(--border2);background:var(--surface2)}
+  .av-wrap.r{margin-left:-12px}
+  .av{display:block;width:100%;height:100%;object-fit:cover;object-position:center 18%}
+  .mlink{width:30px;height:30px;border-radius:50%;background:var(--accent);margin:0 -6px;z-index:3;flex-shrink:0;border:3px solid var(--bg);display:flex;align-items:center;justify-content:center;font-size:11px;color:#000;font-weight:900}
+  .score-box{padding:14px 28px;border-radius:16px;border:1px solid var(--border);background:var(--surface);margin-bottom:22px}
+  .score-n{font-size:32px;font-weight:800;color:var(--accent);letter-spacing:-1px}
+  .score-l{font-size:11px;color:var(--txt3);margin-top:2px}
+
+  /* inbox */
+  .list{flex:1;margin-top:8px}
+  .row{display:flex;align-items:center;gap:13px;padding:13px 0;border-bottom:1px solid var(--border)}
+  .rav{width:50px;height:50px;border-radius:50%;object-fit:cover;object-position:center 18%;border:1px solid var(--border);flex-shrink:0;background:var(--surface2)}
+  .rbody{flex:1;text-align:left;min-width:0}
+  .rname{font-size:15px;font-weight:600}
+  .rlast{font-size:12px;color:var(--txt2);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rmeta{text-align:right;flex-shrink:0}
+  .rts{font-size:10px;color:var(--txt3)}
+  .rdot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-top:5px}
+
+  /* chat */
+  .chat-hd{display:flex;align-items:center;gap:12px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+  .back{color:var(--txt2);font-size:18px;padding-right:4px}
+  .ch-av{width:38px;height:38px;border-radius:50%;object-fit:cover;object-position:center 18%;flex-shrink:0;background:var(--surface2)}
+  .ch-name{font-size:16px;font-weight:600}
+  .ch-status{font-size:11px;color:var(--accent);margin-top:2px;display:flex;align-items:center;gap:5px}
+  .e2e{text-align:center;font-size:10px;color:var(--txt3);padding:9px 0;letter-spacing:0.3px}
+  .msgs{flex:1;display:flex;flex-direction:column;gap:10px;padding:12px 0;overflow-y:auto}
+  .b{max-width:78%;padding:11px 14px;border-radius:16px;font-size:14px;line-height:1.4}
+  .b-t{align-self:flex-start;background:var(--surface2);border:1px solid var(--border)}
+  .b-m{align-self:flex-end;background:var(--accent);color:#000;font-weight:500}
+  .b-ts{font-size:9px;color:var(--txt3);margin-top:3px;padding:0 4px}
+  .b-row{display:flex;flex-direction:column}
+  .b-row.me{align-self:flex-end;align-items:flex-end}
+  .b-row.them{align-self:flex-start}
+  .inp{display:flex;gap:10px;align-items:center;border-top:1px solid var(--border);padding-top:12px}
+  .fld{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:12px 14px;color:var(--txt);font-size:14px;outline:none}
+  .snd{background:var(--accent);color:#000;font-size:12px;font-weight:700;padding:10px 16px;border-radius:12px;border:none;cursor:pointer}
+
+  /* profile */
+  .prof{display:flex;flex-direction:column;overflow:hidden}
+  .prof-scroll{flex:1;overflow-y:auto;display:flex;flex-direction:column;align-items:center;padding:8px 0 62px}
+  .pav-wrap{width:100px;height:100px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid var(--border2);margin:12px 0 14px;background:var(--surface2)}
+  .pav{display:block;width:100%;height:100%;object-fit:cover;object-position:center 15%}
+  .pname{font-size:22px;font-weight:700}
+  .pwallet{font-size:12px;color:var(--txt3);margin-top:4px;font-family:'SF Mono',Menlo,monospace}
+  .verified{font-size:11px;color:var(--accent);font-weight:600;margin-top:6px}
+  .stats{display:flex;gap:36px;margin:22px 0}
+  .sv{font-size:26px;font-weight:700;color:var(--accent);letter-spacing:-0.5px}
+  .sl{font-size:10px;color:var(--txt3);margin-top:3px;text-transform:uppercase;letter-spacing:0.5px}
+  .trust-card{width:100%;border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:10px;background:var(--surface)}
+  .trust-card h4{font-size:12px;font-weight:600;margin-bottom:10px}
+  .bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .bar-l{width:72px;font-size:10px;color:var(--txt3)}
+  .bar{flex:1;height:4px;background:var(--surface2);border-radius:999px;overflow:hidden}
+  .bar-f{height:100%;background:var(--accent);border-radius:999px}
+  .bar-n{width:22px;text-align:right;font-size:10px;font-weight:600;color:var(--txt2)}
+  .upg{width:100%;border:1px solid rgba(255,61,138,0.3);border-radius:14px;padding:16px;background:var(--accent-bg);text-align:left}
+  .upg-t{font-size:14px;font-weight:700}
+  .upg-s{font-size:12px;color:var(--txt2);margin-top:4px}
+  .upg-p{font-size:11px;color:var(--accent);font-weight:600;margin-top:8px}
+
+  .footer-note{text-align:center;padding:32px 24px 48px;color:var(--txt3);font-size:12px;border-top:1px solid var(--border)}
+  .footer-note a{color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+
+<!-- Unsplash portraits — free license, model-released stock photography -->
+<section class="hero">
+  <div class="logo-box logo-box--md"><img src="../assets/brand/logo.png" alt="Grap3" /></div>
+  <h1>Grap3</h1>
+  <p class="sub">Wallet-first dating on Solana Seeker. Seed Vault auth, on-chain trust, encrypted chat, USDC payments — built for the dApp Store.</p>
+  <div class="badges">
+    <span class="badge">Seeker OS</span>
+    <span class="badge">#FF3D8A</span>
+    <span class="badge">MWA + Seed Vault</span>
+    <span class="badge">E2E Chat</span>
+  </div>
+</section>
+
+<div class="feat-row">
+  <div class="feat"><div class="feat-ic">◎</div><div class="feat-t">Wallet Auth</div><div class="feat-d">ed25519 sign-in via MWA</div></div>
+  <div class="feat"><div class="feat-ic">◆</div><div class="feat-t">Trust Score</div><div class="feat-d">On-chain anti-bot signal</div></div>
+  <div class="feat"><div class="feat-ic">◈</div><div class="feat-t">Smart Match</div><div class="feat-d">Elo + Gale-Shapley</div></div>
+  <div class="feat"><div class="feat-ic">◇</div><div class="feat-t">Crypto Pay</div><div class="feat-d">USDC / SOL treasury</div></div>
+</div>
+
+<nav class="nav" id="nav">
+  <button class="on" onclick="go(0)">Onboard</button>
+  <button onclick="go(1)">Discover</button>
+  <button onclick="go(2)">Match</button>
+  <button onclick="go(3)">Matches</button>
+  <button onclick="go(4)">Chat</button>
+  <button onclick="go(5)">Profile</button>
+</nav>
+
+<div class="gallery" id="gal">
+
+  <!-- 1 ONBOARD -->
+  <div class="frame">
+    <div class="frame-top"><span class="step">01 · Onboard</span><span class="feat-tag">Wallet sign-in · no password</span></div>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="status"><span class="clk">9:41</span><span>Seeker</span></div>
+      <div class="screen">
+        <div class="logo-row">
+          <div class="logo-box logo-box--sm"><img src="../assets/brand/logo.png" alt="Grap3" /></div>
+          <div class="h">Grap3</div>
+          <div class="sub">Dating on Solana Seeker</div>
+          <div class="pill" style="margin-top:14px"><span class="pill-d"></span>Seed Vault ready</div>
+        </div>
+        <div class="foot">
+          <button class="btn">Connect wallet</button>
+          <div class="legal" style="margin-top:14px;color:var(--txt2);font-size:13px">No password needed — just your Seeker wallet.</div>
+          <div class="legal">18+ only</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 DISCOVER -->
+  <div class="frame">
+    <div class="frame-top"><span class="step">02 · Discover</span><span class="feat-tag">SwipeDeck · TrustBadge · Elo feed</span></div>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="status"><span class="clk">9:41</span><span>Seeker</span></div>
+      <div class="screen">
+        <div class="disc-hd">
+          <div><div class="lbl">Discover</div><div class="h">Tonight</div></div>
+          <div class="remain"><div class="lbl">Left</div><div class="remain-n">3</div></div>
+        </div>
+        <div class="card" style="background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=700&h=900&q=85&crop=entropy')">
+          <div class="shade"></div>
+          <div class="trust">◆ Trust 92</div>
+          <div class="pinfo">
+            <div class="pname">Nova<span class="page">, 27</span></div>
+            <div class="pbio">Solana dev · DeFi native · Seeker owner</div>
+            <div class="tags"><span class="tag">DeFi</span><span class="tag">Anchor</span><span class="tag">Seeker</span></div>
+            <div class="compat">94% compatible</div>
+          </div>
+        </div>
+        <div class="acts">
+          <div class="act" style="color:var(--red)">×</div>
+          <div class="act" style="color:var(--txt2)">↑</div>
+          <div class="act act-like">♥</div>
+        </div>
+        <div class="tabbar"><div class="tab on">Discover</div><div class="tab">Matches</div><div class="tab">Profile</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 MATCH -->
+  <div class="frame">
+    <div class="frame-top"><span class="step">03 · Match</span><span class="feat-tag">WebSocket match:new · MatchModal</span></div>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="status"><span class="clk">9:41</span><span>Seeker</span></div>
+      <div class="screen match-body">
+        <div class="lbl" style="color:var(--accent)">Mutual like</div>
+        <div class="match-h">It's a match</div>
+        <div class="sub" style="margin-top:6px">You and Nova liked each other</div>
+        <div class="avs">
+          <div class="av-wrap"><img class="av" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&h=300&q=85" alt="You" /></div>
+          <div class="mlink">✓</div>
+          <div class="av-wrap r"><img class="av" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&h=300&q=85" alt="Nova" /></div>
+        </div>
+        <div class="score-box">
+          <div class="score-n">94%</div>
+          <div class="score-l">compatibility · Elo-weighted</div>
+        </div>
+        <button class="btn">Send a message</button>
+        <button class="btn-s">Keep browsing</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 MATCHES -->
+  <div class="frame">
+    <div class="frame-top"><span class="step">04 · Matches</span><span class="feat-tag">Realtime inbox · unread badges</span></div>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="status"><span class="clk">9:42</span><span>Seeker</span></div>
+      <div class="screen">
+        <div class="lbl">Inbox</div>
+        <div class="h">Matches</div>
+        <div class="list">
+          <div class="row">
+            <img class="rav" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&h=120&q=85" alt="" />
+            <div class="rbody"><div class="rname">Nova</div><div class="rlast">coffee after the keynote?</div></div>
+            <div class="rmeta"><div class="rts">now</div><div class="rdot"></div></div>
+          </div>
+          <div class="row">
+            <img class="rav" src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=120&h=120&q=85" alt="" />
+            <div class="rbody"><div class="rname">Lumi</div><div class="rlast">sounds perfect</div></div>
+            <div class="rmeta"><div class="rts">Tue</div></div>
+          </div>
+          <div class="row" style="border:none">
+            <img class="rav" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&h=120&q=85" alt="" />
+            <div class="rbody"><div class="rname">Sol</div><div class="rlast">matched yesterday</div></div>
+            <div class="rmeta"><div class="rts">Mon</div></div>
+          </div>
+        </div>
+        <div class="tabbar"><div class="tab">Discover</div><div class="tab on">Matches<span class="unread-dot"></span></div><div class="tab">Profile</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 CHAT -->
+  <div class="frame">
+    <div class="frame-top"><span class="step">05 · Chat</span><span class="feat-tag">tweetnacl E2E · wallet-key secured</span></div>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="status"><span class="clk">9:43</span><span>Seeker</span></div>
+      <div class="screen">
+        <div class="chat-hd">
+          <span class="back">←</span>
+          <img class="ch-av" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&h=80&q=85" alt="" />
+          <div><div class="ch-name">Nova</div><div class="ch-status"><span class="pill-d"></span>Active now · Trust 92</div></div>
+        </div>
+        <div class="e2e">End-to-end encrypted · wallet-key secured</div>
+        <div class="msgs">
+          <div class="b-row them"><div class="b b-t">hey — we matched at 94%</div><div class="b-ts">09:12</div></div>
+          <div class="b-row me"><div class="b b-m">on-chain score checks out</div><div class="b-ts">09:13</div></div>
+          <div class="b-row them"><div class="b b-t">coffee at the afterparty?</div><div class="b-ts">09:15</div></div>
+        </div>
+        <div class="inp">
+          <input class="fld" placeholder="Write a message" />
+          <button class="snd">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 PROFILE -->
+  <div class="frame">
+    <div class="frame-top"><span class="step">06 · Profile</span><span class="feat-tag">Reputation API · USDC upgrade</span></div>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="status"><span class="clk">9:44</span><span>Seeker</span></div>
+      <div class="screen prof">
+        <div class="prof-scroll">
+          <div class="lbl" style="align-self:flex-start">Profile</div>
+          <div class="pav-wrap"><img class="pav" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&h=300&q=85" alt="You" /></div>
+          <div class="pname">You</div>
+          <div class="pwallet">7xKq…3mPn</div>
+          <div class="verified">✓ On-chain verified</div>
+          <div class="stats">
+            <div><div class="sv">92</div><div class="sl">Trust</div></div>
+            <div><div class="sv">24</div><div class="sl">Matches</div></div>
+            <div><div class="sv">1480</div><div class="sl">Elo</div></div>
+          </div>
+          <div class="trust-card">
+            <h4>Trust signals</h4>
+            <div class="bar-row"><span class="bar-l">Wallet age</span><div class="bar"><div class="bar-f" style="width:84%"></div></div><span class="bar-n">84</span></div>
+            <div class="bar-row"><span class="bar-l">Activity</span><div class="bar"><div class="bar-f" style="width:91%"></div></div><span class="bar-n">91</span></div>
+            <div class="bar-row"><span class="bar-l">Seeker</span><div class="bar"><div class="bar-f" style="width:100%"></div></div><span class="bar-n">100</span></div>
+          </div>
+          <div class="upg">
+            <div class="upg-t">Upgrade to Plus</div>
+            <div class="upg-s">Unlimited likes · see who liked you</div>
+            <div class="upg-p">$7.99/mo · pay in USDC or SOL →</div>
+          </div>
+        </div>
+        <div class="tabbar"><div class="tab">Discover</div><div class="tab">Matches</div><div class="tab on">Profile</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer-note">
+  Portraits: <a href="https://unsplash.com/license">Unsplash</a> (free license) ·
+  Theme: <a href="https://solanamobile.com/">Solana Mobile Seeker OS</a> ·
+  Code: <a href="https://github.com/9lordisgod/grap3">github.com/9lordisgod/grap3</a>
+</div>
+
+<script>
+  setInterval(()=>{document.querySelectorAll('.clk').forEach(e=>{e.textContent=new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:false})})},1000);
+  const gal=document.getElementById('gal'),btns=document.querySelectorAll('.nav button');
+  function go(i){document.querySelectorAll('.frame')[i]?.scrollIntoView({behavior:'smooth',inline:'center'});btns.forEach((b,j)=>b.classList.toggle('on',j===i))}
+  gal?.addEventListener('scroll',()=>{const f=[...document.querySelectorAll('.frame')];const c=gal.scrollLeft+gal.offsetWidth/2;let b=0,m=1/0;f.forEach((w,i)=>{const d=Math.abs(w.offsetLeft+w.offsetWidth/2-c);if(d<m){m=d;b=i}});btns.forEach((btn,j)=>btn.classList.toggle('on',j===b))});
+</script>
+</body>
+</html>

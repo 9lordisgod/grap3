@@ -1,0 +1,20 @@
+/* Grap3 logo box — shared across preview, capture, README export */
+.logo-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 0 28px rgba(255, 61, 138, 0.35);
+  overflow: hidden;
+}
+.logo-box img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.logo-box--sm { width: 64px; height: 64px; border-radius: 14px; }
+.logo-box--md { width: 96px; height: 96px; border-radius: 21px; }
+.logo-box--lg { width: 128px; height: 128px; border-radius: 28px; }

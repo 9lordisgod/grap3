@@ -1,0 +1,33 @@
+{
+  "publisher": {
+    "name": "Grap3 Labs",
+    "website": "https://grap3.dating",
+    "email": "founders@grap3.dating"
+  },
+  "app": {
+    "name": "Grap3",
+    "android_package": "dating.grap3.app",
+    "category": "social",
+    "urls": {
+      "license_url": "https://github.com/9lordisgod/grap3/blob/main/LICENSE",
+      "copyright_url": "https://grap3.dating",
+      "privacy_policy_url": "https://grap3.dating/privacy"
+    }
+  },
+  "release": {
+    "version": "0.3.0",
+    "short_description": "Crypto-native dating for the Solana Seeker. Your wallet is your identity.",
+    "long_description": "Grap3 is the dating app for the Solana circle. Wallet-first sign in, on-chain reputation that keeps bots out, premium features, and a futuristic Seeker-native UI. Match with verified crypto-natives, chat end-to-end encrypted, and pay with SOL or USDC.",
+    "new_in_version": "Animated swipe deck, on-chain trust scoring, encrypted chat, SOL/USDC payments.",
+    "saga_features_localized": "Seed Vault sign-in, Seeker holder perks.",
+    "media": {
+      "icon": "./assets/icon.png",
+      "screenshots": [
+        "./assets/screenshots/onboarding.png",
+        "./assets/screenshots/discover.png",
+        "./assets/screenshots/chat.png",
+        "./assets/screenshots/profile.png"
+      ]
+    }
+  }
+}

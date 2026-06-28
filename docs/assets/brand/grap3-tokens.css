@@ -1,0 +1,19 @@
+/* Grap3 brand tokens — shared across mockup demo + README capture */
+:root {
+  --bg: #000;
+  --surface: #0d0d0d;
+  --surface2: #161616;
+  --border: rgba(255, 255, 255, 0.09);
+  --border2: rgba(255, 255, 255, 0.14);
+  --accent: #FF3D8A;
+  --accent-bg: rgba(255, 61, 138, 0.12);
+  --accent-border: rgba(255, 61, 138, 0.25);
+  --accent-muted: rgba(255, 61, 138, 0.35);
+  --accent-strong: rgba(255, 61, 138, 0.45);
+  --txt: #fff;
+  --txt2: rgba(255, 255, 255, 0.58);
+  --txt3: rgba(255, 255, 255, 0.34);
+  --red: #FF453A;
+  --pw: 350px;
+  --ph: 720px;
+}

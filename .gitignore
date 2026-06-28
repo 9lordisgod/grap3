@@ -1,0 +1,31 @@
+# deps
+node_modules/
+.pnp/
+.pnp.js
+
+# env & secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+keypair.json
+*-keypair.json
+
+# builds
+dist/
+build/
+*.apk
+*.aab
+.expo/
+.expo-shared/
+web-build/
+
+# prisma
+backend/prisma/*.db
+
+# os/editor
+.DS_Store
+*.log
+.idea/
+.vscode/

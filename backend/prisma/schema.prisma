@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  walletPubkey String   @unique
+  displayName  String?
+  age          Int?
+  bio          String?
+  tags         String[]
+  photos       String[]
+  onChainScore Int      @default(0)
+  elo          Int      @default(1400)
+  berries      Int      @default(0)
+  tier         String   @default("free") // free | plus | gold | seeker
+  seekerBonus  Boolean  @default(false)
+  isPremium    Boolean  @default(false) // deprecated: use tier
+  createdAt    DateTime @default(now())
+  swipesFrom   Swipe[]  @relation("from")
+  swipesTo     Swipe[]  @relation("to")
+  messages     Message[]
+}
+
+model Swipe {
+  id        String   @id @default(cuid())
+  fromId    String
+  toId      String
+  direction String   // like | pass | superlike
+  createdAt DateTime @default(now())
+  from      User     @relation("from", fields: [fromId], references: [id])
+  to        User     @relation("to", fields: [toId], references: [id])
+  @@unique([fromId, toId])
+}
+
+model Match {
+  id        String   @id @default(cuid())
+  userAId   String
+  userBId   String
+  createdAt DateTime @default(now())
+  messages  Message[]
+  @@unique([userAId, userBId])
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  matchId   String
+  senderId  String
+  body      String
+  createdAt DateTime @default(now())
+  match     Match    @relation(fields: [matchId], references: [id])
+  sender    User     @relation(fields: [senderId], references: [id])
+}
+
+model Payment {
+  id        String   @id @default(cuid())
+  userId    String
+  feature   String   // superLike | boost | premiumMonthly
+  signature String   @unique
+  amount    Float
+  currency  String   // SOL | USDC
+  createdAt DateTime @default(now())
+}
